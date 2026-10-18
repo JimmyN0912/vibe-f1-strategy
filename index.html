@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>APEX PIT WALL OS | Formula 1 Dual-Car Strategy Command</title>
+  <title>APEX PIT WALL OS | 20-Driver F1 Dual Strategy Command</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
   <style>
     :root {
       --bg-dark: #080a0f;
-      --panel-bg: rgba(14, 19, 27, 0.90);
+      --panel-bg: rgba(14, 19, 27, 0.92);
       --border-panel: rgba(56, 75, 102, 0.40);
       --c1-cyan: #00f0ff;
       --c2-amber: #ffaa00;
@@ -64,14 +64,13 @@
     }
 
     .car1-glow {
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.28);
     }
 
     .car2-glow {
-      box-shadow: 0 0 10px rgba(255, 170, 0, 0.25);
+      box-shadow: 0 0 12px rgba(255, 170, 0, 0.28);
     }
 
-    /* Custom scrollbar */
     ::-webkit-scrollbar {
       width: 4px;
       height: 4px;
@@ -103,7 +102,7 @@
             <span class="w-1.5 h-1.5 rounded-full bg-slate-500" id="liveDot"></span> <span id="liveText">GRID FORMING</span>
           </span>
         </div>
-        <p class="text-[10px] text-slate-400 font-mono">SILVERSTONE GRAND PRIX • 35 LAPS • 2-CAR STRATEGY OPS</p>
+        <p class="text-[10px] text-slate-400 font-mono">SILVERSTONE GP • 35 LAPS • 20 DRIVERS • TSUNODA & RICCIARDO STRATEGY COMMAND</p>
       </div>
     </div>
 
@@ -114,7 +113,6 @@
         <span id="flagText">GRID FORMATION LAP</span>
       </div>
 
-      <!-- Weather & Track Wetness -->
       <div class="flex items-center gap-3 bg-black/50 px-3 py-1 rounded border border-slate-700/60 text-xs">
         <div class="flex items-center gap-1.5">
           <span id="weatherIcon">☀️</span>
@@ -138,7 +136,7 @@
       <button id="btnSpeed2" class="px-2 py-1 text-xs font-bold rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition">2x</button>
       <button id="btnSpeed5" class="px-2 py-1 text-xs font-bold rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition">5x</button>
       <button id="btnSpeed10" class="px-2 py-1 text-xs font-bold rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition">10x</button>
-      <button id="btnAudioMute" class="ml-1 px-2 py-1 text-xs font-bold rounded bg-slate-800 hover:bg-slate-700 text-slate-300" title="Toggle Synthesizer Sound">🔊</button>
+      <button id="btnAudioMute" class="ml-1 px-2 py-1 text-xs font-bold rounded bg-slate-800 hover:bg-slate-700 text-slate-300" title="Toggle Sound">🔊</button>
     </div>
   </header>
 
@@ -147,7 +145,7 @@
     <div class="flex items-center gap-3 mb-2 md:mb-0">
       <div class="text-[11px] font-racing uppercase tracking-wider text-slate-400">
         <span class="text-red-400 font-bold">FIA START GANTRY</span><br>
-        <span id="gantryStatusMsg">STANDBY ON FORMATION GRID</span>
+        <span id="gantryStatusMsg">STANDBY ON FORMATION GRID (20 CARS QUEUED)</span>
       </div>
     </div>
 
@@ -175,13 +173,13 @@
       </div>
     </div>
 
-    <!-- Grid / Start Sequence Trigger -->
+    <!-- Trigger -->
     <div class="mt-2 md:mt-0 flex items-center gap-2">
       <button id="btnCommenceStart" class="px-4 py-2 bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-racing font-bold text-xs uppercase tracking-wider rounded shadow-lg transition active:scale-95 flex items-center gap-2">
-        <span>🚦 INITIATE START SEQUENCE</span>
+        <span>🚦 INITIATE 5 RED LIGHTS SEQUENCE</span>
       </button>
       <div id="lightsOutBadge" class="hidden px-3 py-1.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500 font-racing font-bold text-xs tracking-widest animate-pulse">
-        LIGHTS OUT! GO!
+        LIGHTS OUT! AND AWAY WE GO!
       </div>
     </div>
   </div>
@@ -189,24 +187,24 @@
   <!-- ================= MAIN PIT WALL INTERFACE ================= -->
   <main class="grid grid-cols-1 lg:grid-cols-12 gap-2 flex-1">
 
-    <!-- LEFT COLUMN: LIVE TIMING TOWER & WEATHER RADAR (3.5 COLS) -->
+    <!-- LEFT COLUMN: LIVE TIMING TOWER (20 CARS) & WEATHER RADAR (4 COLS) -->
     <section class="lg:col-span-4 flex flex-col gap-2">
       <div class="panel-card rounded-lg p-2.5 flex-1 flex flex-col overflow-hidden">
         <div class="flex items-center justify-between border-b border-slate-800 pb-1.5 mb-1.5">
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-            <h2 class="font-racing text-xs tracking-wider text-slate-200 uppercase font-bold">Timing Tower (Silverstone)</h2>
+            <h2 class="font-racing text-xs tracking-wider text-slate-200 uppercase font-bold">20-Driver Timing Tower</h2>
           </div>
           <div class="text-[11px] font-mono text-cyan-400">
             LAP <span id="currentLapDisplay" class="font-bold text-white text-sm">0</span> / <span id="totalLapsDisplay">35</span>
           </div>
         </div>
 
-        <!-- Leaderboard Table -->
-        <div class="overflow-y-auto flex-1 pr-0.5">
+        <!-- 20-Car Leaderboard Table -->
+        <div class="overflow-y-auto flex-1 pr-0.5 max-h-[500px]">
           <table class="w-full text-left text-xs border-collapse">
             <thead>
-              <tr class="text-[9px] text-slate-400 border-b border-slate-800 uppercase tracking-wider">
+              <tr class="text-[9px] text-slate-400 border-b border-slate-800 uppercase tracking-wider sticky top-0 bg-[#0e131b] z-10">
                 <th class="py-1 px-1 text-center">POS</th>
                 <th class="py-1 px-1">NO. DRIVER</th>
                 <th class="py-1 px-1 text-right">GAP</th>
@@ -217,7 +215,7 @@
               </tr>
             </thead>
             <tbody id="timingTableBody" class="divide-y divide-slate-800/60 font-mono text-[11px]">
-              <!-- Dynamically populated rows -->
+              <!-- 20 Driver Rows dynamically injected -->
             </tbody>
           </table>
         </div>
@@ -228,9 +226,7 @@
             <span class="font-bold">RADAR & CROSSOVER PROJECTION</span>
             <span id="forecastAlert" class="text-amber-400 font-bold">DRY SLICK WINDOW</span>
           </div>
-          <div id="weatherTimeline" class="flex h-5 w-full rounded overflow-hidden bg-slate-900 border border-slate-800">
-            <!-- Timeline forecast cells injected via JS -->
-          </div>
+          <div id="weatherTimeline" class="flex h-4 w-full rounded overflow-hidden bg-slate-900 border border-slate-800"></div>
           <div class="flex justify-between items-center text-[9px] text-slate-400 mt-1">
             <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-400"></span> S/M/H &lt;20%</span>
             <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> INTER 20-60%</span>
@@ -240,26 +236,26 @@
       </div>
     </section>
 
-    <!-- CENTER & RIGHT: 2D GPS CIRCUIT & DUAL-CAR STRATEGY DECKS (8 COLS) -->
+    <!-- RIGHT COLUMN: 2D GPS CIRCUIT & DUAL DRIVER STRATEGY DECKS (8 COLS) -->
     <section class="lg:col-span-8 flex flex-col gap-2">
 
       <!-- TOP: 2D GPS CIRCUIT CANVAS -->
       <div class="panel-card rounded-lg p-2 relative flex flex-col">
         <div class="flex items-center justify-between mb-1 text-[11px]">
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-3 flex-wrap">
             <span class="font-racing font-bold tracking-wider text-slate-200">2D GPS CIRCUIT TELEMETRY</span>
             <span class="text-[10px] text-cyan-400 font-bold flex items-center gap-1">
-              <span class="w-2 h-2 rounded-full bg-cyan-400 inline-block"></span> #16 VANCE
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 inline-block"></span> #22 Y. TSUNODA
             </span>
             <span class="text-[10px] text-amber-400 font-bold flex items-center gap-1">
-              <span class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span> #55 SAINZ
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span> #3 D. RICCIARDO
             </span>
             <span class="text-[10px] text-slate-400 flex items-center gap-1">
-              <span class="w-2 h-2 rounded-full bg-slate-400 inline-block"></span> COMPETITORS
+              <span class="w-2 h-2 rounded-full bg-slate-500 inline-block"></span> 18 COMPETITORS
             </span>
           </div>
           <div id="pitLaneDoubleStackAlert" class="hidden text-[10px] font-bold text-red-400 bg-red-950/80 px-2 py-0.5 rounded border border-red-500 animate-pulse">
-            ⚠️ DOUBLE-STACK WARNING: CAR B QUEUING DELAY!
+            ⚠️ DOUBLE-STACK WARNING: RICCIARDO QUEUING BEHIND TSUNODA!
           </div>
         </div>
 
@@ -273,23 +269,22 @@
         </div>
       </div>
 
-      <!-- BOTTOM: DUAL CAR PIT WALL COMMAND DECKS (SIDE-BY-SIDE SPLIT) -->
+      <!-- BOTTOM: YUKI TSUNODA & DANIEL RICCIARDO PIT WALL COMMAND DECKS -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-2 flex-1">
 
-        <!-- CAR 1 COMMAND DECK (#16 ALEX VANCE) -->
+        <!-- CAR 1 COMMAND DECK (#22 YUKI TSUNODA) -->
         <div class="panel-card car1-glow rounded-lg p-2.5 flex flex-col justify-between border-t-2 border-cyan-400">
-          <!-- Car 1 Header -->
           <div class="flex items-center justify-between border-b border-slate-800 pb-1 mb-1.5">
             <div class="flex items-center gap-2">
-              <span class="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 font-bold text-xs border border-cyan-500/50">#16</span>
-              <span class="font-racing font-bold text-white text-xs tracking-wide">ALEX VANCE</span>
+              <span class="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 font-bold text-xs border border-cyan-500/50">#22</span>
+              <span class="font-racing font-bold text-white text-xs tracking-wide">YUKI TSUNODA</span>
             </div>
             <span id="car1StatusBadge" class="text-[9px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
               GRID STANDBY
             </span>
           </div>
 
-          <!-- Car 1 Telemetry Metrics -->
+          <!-- Metrics -->
           <div class="grid grid-cols-3 gap-1.5 mb-2 text-center text-xs">
             <div class="bg-black/50 p-1.5 rounded border border-slate-800">
               <span class="text-[9px] text-slate-400 block">TIRE HEALTH</span>
@@ -310,7 +305,7 @@
             </div>
           </div>
 
-          <!-- Car 1 Four-Corner Tire Temperatures -->
+          <!-- Four-Corner Temps -->
           <div class="bg-black/40 p-1.5 rounded border border-slate-800/80 mb-2">
             <div class="flex justify-between items-center text-[9px] text-slate-400 mb-1">
               <span>TIRE TEMPS (°C)</span>
@@ -324,7 +319,7 @@
             </div>
           </div>
 
-          <!-- Car 1 Push & Engine Strategy Controls -->
+          <!-- Pace Mode Controls -->
           <div class="space-y-1.5">
             <div>
               <span class="text-[9px] text-slate-400 block mb-0.5 uppercase font-bold">Pace Mode</span>
@@ -336,14 +331,12 @@
               </div>
             </div>
 
-            <!-- ERS Deployment Toggle -->
             <div class="flex items-center gap-1.5">
               <button id="c1_btnOvertake" class="flex-1 py-1 text-[10px] font-racing font-bold rounded bg-slate-800 hover:bg-red-600/80 text-red-400 border border-red-500/40 transition flex items-center justify-center gap-1">
                 ⚡ ERS OVERTAKE [OFF]
               </button>
             </div>
 
-            <!-- Next Pit Selection & Box Button -->
             <div class="pt-1.5 border-t border-slate-800">
               <span class="text-[9px] text-slate-400 block mb-1 uppercase font-bold">Next Pit Tyre</span>
               <div class="grid grid-cols-5 gap-1 mb-1.5">
@@ -354,26 +347,25 @@
                 <button class="c1-tyre-choice p-1 rounded border border-blue-500/60 bg-blue-950/40 text-blue-400 text-[9px] font-bold" data-compound="WET">W</button>
               </div>
               <button id="c1_btnBox" class="w-full py-1.5 bg-gradient-to-r from-cyan-600 to-cyan-500 hover:from-cyan-500 hover:to-cyan-400 text-black font-racing font-bold text-xs rounded uppercase tracking-wider shadow transition active:scale-95">
-                📢 BOX CAR #16 THIS LAP
+                📢 BOX TSUNODA #22 THIS LAP
               </button>
             </div>
           </div>
         </div>
 
-        <!-- CAR 2 COMMAND DECK (#55 CARLOS SAINZ) -->
+        <!-- CAR 2 COMMAND DECK (#3 DANIEL RICCIARDO) -->
         <div class="panel-card car2-glow rounded-lg p-2.5 flex flex-col justify-between border-t-2 border-amber-400">
-          <!-- Car 2 Header -->
           <div class="flex items-center justify-between border-b border-slate-800 pb-1 mb-1.5">
             <div class="flex items-center gap-2">
-              <span class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold text-xs border border-amber-500/50">#55</span>
-              <span class="font-racing font-bold text-white text-xs tracking-wide">CARLOS SAINZ</span>
+              <span class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold text-xs border border-amber-500/50">#3</span>
+              <span class="font-racing font-bold text-white text-xs tracking-wide">DANIEL RICCIARDO</span>
             </div>
             <span id="car2StatusBadge" class="text-[9px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
               GRID STANDBY
             </span>
           </div>
 
-          <!-- Car 2 Telemetry Metrics -->
+          <!-- Metrics -->
           <div class="grid grid-cols-3 gap-1.5 mb-2 text-center text-xs">
             <div class="bg-black/50 p-1.5 rounded border border-slate-800">
               <span class="text-[9px] text-slate-400 block">TIRE HEALTH</span>
@@ -394,7 +386,7 @@
             </div>
           </div>
 
-          <!-- Car 2 Four-Corner Tire Temperatures -->
+          <!-- Four-Corner Temps -->
           <div class="bg-black/40 p-1.5 rounded border border-slate-800/80 mb-2">
             <div class="flex justify-between items-center text-[9px] text-slate-400 mb-1">
               <span>TIRE TEMPS (°C)</span>
@@ -408,7 +400,7 @@
             </div>
           </div>
 
-          <!-- Car 2 Push & Engine Strategy Controls -->
+          <!-- Pace Mode Controls -->
           <div class="space-y-1.5">
             <div>
               <span class="text-[9px] text-slate-400 block mb-0.5 uppercase font-bold">Pace Mode</span>
@@ -420,14 +412,12 @@
               </div>
             </div>
 
-            <!-- ERS Deployment Toggle -->
             <div class="flex items-center gap-1.5">
               <button id="c2_btnOvertake" class="flex-1 py-1 text-[10px] font-racing font-bold rounded bg-slate-800 hover:bg-red-600/80 text-red-400 border border-red-500/40 transition flex items-center justify-center gap-1">
                 ⚡ ERS OVERTAKE [OFF]
               </button>
             </div>
 
-            <!-- Next Pit Selection & Box Button -->
             <div class="pt-1.5 border-t border-slate-800">
               <span class="text-[9px] text-slate-400 block mb-1 uppercase font-bold">Next Pit Tyre</span>
               <div class="grid grid-cols-5 gap-1 mb-1.5">
@@ -438,7 +428,7 @@
                 <button class="c2-tyre-choice p-1 rounded border border-blue-500/60 bg-blue-950/40 text-blue-400 text-[9px] font-bold" data-compound="WET">W</button>
               </div>
               <button id="c2_btnBox" class="w-full py-1.5 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black font-racing font-bold text-xs rounded uppercase tracking-wider shadow transition active:scale-95">
-                📢 BOX CAR #55 THIS LAP
+                📢 BOX RICCIARDO #3 THIS LAP
               </button>
             </div>
           </div>
@@ -446,15 +436,13 @@
 
       </div>
 
-      <!-- TEAM RADIO & RACE CONTROL FEED (FULL WIDTH BOTTOM) -->
+      <!-- TEAM RADIO & RACE CONTROL FEED -->
       <div class="panel-card rounded-lg p-2 min-h-[110px] max-h-[140px] flex flex-col overflow-hidden">
         <div class="flex items-center justify-between border-b border-slate-800 pb-1 mb-1 text-[10px]">
           <span class="font-racing font-bold text-slate-300 uppercase">Dual-Channel Pit Wall Radio Feed</span>
-          <span class="text-slate-500 font-mono">CH-1: ALEX #16 | CH-2: CARLOS #55</span>
+          <span class="text-slate-500 font-mono">CH-1: YUKI #22 | CH-2: DANIEL #3</span>
         </div>
-        <div id="radioLogList" class="flex-1 overflow-y-auto space-y-1 pr-1 text-[11px] font-mono">
-          <!-- Dynamic audio log messages -->
-        </div>
+        <div id="radioLogList" class="flex-1 overflow-y-auto space-y-1 pr-1 text-[11px] font-mono"></div>
       </div>
 
     </section>
@@ -471,12 +459,12 @@
 
       <div class="grid grid-cols-2 gap-3 bg-black/60 p-3 rounded-lg border border-slate-800 mb-4 text-xs">
         <div class="p-2 rounded bg-slate-900 border border-cyan-500/40">
-          <span class="text-cyan-400 font-bold block text-[11px]">CAR #16 (VANCE)</span>
+          <span class="text-cyan-400 font-bold block text-[11px]">CAR #22 (TSUNODA)</span>
           <span id="sumC1Pos" class="text-xl font-bold font-racing text-white">P1</span>
           <span id="sumC1Pits" class="text-[10px] text-slate-400 block mt-0.5">2 Pit Stops</span>
         </div>
         <div class="p-2 rounded bg-slate-900 border border-amber-500/40">
-          <span class="text-amber-400 font-bold block text-[11px]">CAR #55 (SAINZ)</span>
+          <span class="text-amber-400 font-bold block text-[11px]">CAR #3 (RICCIARDO)</span>
           <span id="sumC2Pos" class="text-xl font-bold font-racing text-white">P3</span>
           <span id="sumC2Pits" class="text-[10px] text-slate-400 block mt-0.5">2 Pit Stops</span>
         </div>
@@ -499,7 +487,6 @@
   <script>
     /* ====================================================================
      *  WEB AUDIO API PROCEDURAL SYNTHESIZER
-     *  Synthesizes grid engine revs, 5 red lights sequence tones, and pit chatter
      * ==================================================================== */
     class ProceduralAudio {
       constructor() {
@@ -522,7 +509,7 @@
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(520, now); // Crisp FIA light tone
+        osc.frequency.setValueAtTime(520, now);
         gain.gain.setValueAtTime(0.18, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
         osc.connect(gain);
@@ -537,7 +524,7 @@
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
         osc.type = 'triangle';
-        osc.frequency.setValueAtTime(1180, now); // High-pitched launch tone
+        osc.frequency.setValueAtTime(1180, now);
         gain.gain.setValueAtTime(0.25, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
         osc.connect(gain);
@@ -623,15 +610,38 @@
     };
 
     /* ====================================================================
-     *  SIMULATION STATE & DRIVER ROSTER
+     *  20-DRIVER FULL F1 GRID DEFINITION
      * ==================================================================== */
+    const DRIVER_ROSTER = [
+      { id: 22, name: 'Y. Tsunoda', team: 'VCARB / Apex', isPlayer: true, carSlot: 'CAR1', color: '#00f0ff', baseSkill: 1.025, initialCompound: 'MEDIUM' },
+      { id: 3,  name: 'D. Ricciardo', team: 'VCARB / Apex', isPlayer: true, carSlot: 'CAR2', color: '#ffaa00', baseSkill: 1.023, initialCompound: 'HARD' },
+      { id: 1,  name: 'M. Verstappen', team: 'Red Bull Racing', isPlayer: false, color: '#1e40af', baseSkill: 1.034, initialCompound: 'SOFT' },
+      { id: 11, name: 'S. Perez', team: 'Red Bull Racing', isPlayer: false, color: '#1e3a8a', baseSkill: 1.012, initialCompound: 'MEDIUM' },
+      { id: 4,  name: 'L. Norris', team: 'McLaren', isPlayer: false, color: '#ff8000', baseSkill: 1.030, initialCompound: 'SOFT' },
+      { id: 81, name: 'O. Piastri', team: 'McLaren', isPlayer: false, color: '#f97316', baseSkill: 1.024, initialCompound: 'MEDIUM' },
+      { id: 16, name: 'C. Leclerc', team: 'Ferrari', isPlayer: false, color: '#dc2626', baseSkill: 1.028, initialCompound: 'MEDIUM' },
+      { id: 55, name: 'C. Sainz', team: 'Ferrari', isPlayer: false, color: '#b91c1c', baseSkill: 1.026, initialCompound: 'HARD' },
+      { id: 63, name: 'G. Russell', team: 'Mercedes-AMG', isPlayer: false, color: '#00a19c', baseSkill: 1.022, initialCompound: 'MEDIUM' },
+      { id: 44, name: 'L. Hamilton', team: 'Mercedes-AMG', isPlayer: false, color: '#059669', baseSkill: 1.025, initialCompound: 'HARD' },
+      { id: 14, name: 'F. Alonso', team: 'Aston Martin', isPlayer: false, color: '#00594f', baseSkill: 1.018, initialCompound: 'HARD' },
+      { id: 18, name: 'L. Stroll', team: 'Aston Martin', isPlayer: false, color: '#047857', baseSkill: 1.002, initialCompound: 'MEDIUM' },
+      { id: 10, name: 'P. Gasly', team: 'Alpine', isPlayer: false, color: '#2563eb', baseSkill: 1.006, initialCompound: 'MEDIUM' },
+      { id: 31, name: 'E. Ocon', team: 'Alpine', isPlayer: false, color: '#3b82f6', baseSkill: 1.005, initialCompound: 'HARD' },
+      { id: 23, name: 'A. Albon', team: 'Williams', isPlayer: false, color: '#0082fa', baseSkill: 1.011, initialCompound: 'MEDIUM' },
+      { id: 2,  name: 'L. Sargeant', team: 'Williams', isPlayer: false, color: '#38bdf8', baseSkill: 0.992, initialCompound: 'SOFT' },
+      { id: 27, name: 'N. Hülkenberg', team: 'Haas', isPlayer: false, color: '#e11d48', baseSkill: 1.008, initialCompound: 'HARD' },
+      { id: 20, name: 'K. Magnussen', team: 'Haas', isPlayer: false, color: '#be123c', baseSkill: 1.003, initialCompound: 'MEDIUM' },
+      { id: 77, name: 'V. Bottas', team: 'Kick Sauber', isPlayer: false, color: '#52e252', baseSkill: 1.004, initialCompound: 'MEDIUM' },
+      { id: 24, name: 'Z. Guanyu', team: 'Kick Sauber', isPlayer: false, color: '#22c55e', baseSkill: 0.996, initialCompound: 'HARD' }
+    ];
+
     const TRACK_LENGTH_METERS = 5891;
     const TOTAL_LAPS = 35;
     const BASE_LAP_TIME = 87.5;
-    const STANDARD_PIT_STATIONARY = 2.6; // seconds
+    const STANDARD_PIT_STATIONARY = 2.6;
 
     let sim = {
-      state: 'PRE_GRID', // PRE_GRID, SEQUENCE, RACING, FINISHED
+      state: 'PRE_GRID',
       running: true,
       timeSpeed: 1,
       currentLap: 0,
@@ -643,28 +653,13 @@
       weatherForecast: [],
       cars: [],
       timeSinceStartSec: 0,
-      pitLaneBusyByCarId: null, // Tracks if pit box is currently occupied for double-stack
+      pitLaneBusyByCarId: null,
       sequenceStep: 0,
       sequenceTimer: null
     };
 
-    // 10 Driver Grid: Vance & Sainz for Apex Racing
-    const DRIVER_ROSTER = [
-      { id: 16, name: 'A. Vance', team: 'Apex Racing', isPlayer: true, carSlot: 'CAR1', color: '#00f0ff', baseSkill: 1.025, initialCompound: 'MEDIUM' },
-      { id: 55, name: 'C. Sainz', team: 'Apex Racing', isPlayer: true, carSlot: 'CAR2', color: '#ffaa00', baseSkill: 1.022, initialCompound: 'HARD' },
-      { id: 1, name: 'M. Verstappen', team: 'Red Bull', isPlayer: false, color: '#1e40af', baseSkill: 1.032, initialCompound: 'SOFT' },
-      { id: 4, name: 'L. Norris', team: 'McLaren', isPlayer: false, color: '#ea580c', baseSkill: 1.028, initialCompound: 'SOFT' },
-      { id: 44, name: 'L. Hamilton', team: 'Ferrari', isPlayer: false, color: '#dc2626', baseSkill: 1.023, initialCompound: 'MEDIUM' },
-      { id: 63, name: 'G. Russell', team: 'Mercedes', isPlayer: false, color: '#059669', baseSkill: 1.020, initialCompound: 'HARD' },
-      { id: 11, name: 'S. Perez', team: 'Red Bull', isPlayer: false, color: '#1e3a8a', baseSkill: 1.008, initialCompound: 'MEDIUM' },
-      { id: 81, name: 'O. Piastri', team: 'McLaren', isPlayer: false, color: '#c2410c', baseSkill: 1.018, initialCompound: 'MEDIUM' },
-      { id: 14, name: 'F. Alonso', team: 'Aston Martin', isPlayer: false, color: '#047857', baseSkill: 1.015, initialCompound: 'HARD' },
-      { id: 10, name: 'P. Gasly', team: 'Alpine', isPlayer: false, color: '#2563eb', baseSkill: 0.995, initialCompound: 'MEDIUM' }
-    ];
-
     function createCar(rosterItem, gridIndex) {
-      // Grid positioning stagger at start line
-      const gridProgress = 0.005 + (10 - gridIndex) * 0.003;
+      const gridProgress = 0.005 + (20 - gridIndex) * 0.0016;
       return {
         id: rosterItem.id,
         name: rosterItem.name,
@@ -675,7 +670,6 @@
         skill: rosterItem.baseSkill,
         gridSlot: gridIndex + 1,
 
-        // Progress & Timing
         lap: 0,
         lapProgress: gridProgress,
         standstill: true,
@@ -688,15 +682,13 @@
         boxThisLap: false,
         plannedCompound: rosterItem.carSlot === 'CAR2' ? 'SOFT' : 'MEDIUM',
 
-        // Tyres & Thermals
         compound: rosterItem.initialCompound,
         tireAgeLaps: 0,
         tireWear: 100.0,
         tireTemps: { FL: 95, FR: 96, RL: 92, RR: 93 },
 
-        // Fuel & Modes
         fuelKg: 75.0,
-        paceMode: 'BALANCED', // SAVE, BALANCED, PUSH, QUALI
+        paceMode: 'BALANCED',
         engineMode: 'STD',
         ersDeploy: false,
         ersBattery: 90.0,
@@ -704,9 +696,6 @@
       };
     }
 
-    /* ====================================================================
-     *  RACE INITIALIZATION & FIVE RED LIGHTS PROCEDURE
-     * ==================================================================== */
     function initRace() {
       sim.cars = DRIVER_ROSTER.map((driver, idx) => createCar(driver, idx));
       sim.state = 'PRE_GRID';
@@ -718,9 +707,8 @@
       sim.timeSinceStartSec = 0;
       sim.pitLaneBusyByCarId = null;
 
-      // Reset Lights
       resetGantryLights();
-      document.getElementById('gantryStatusMsg').innerText = 'STANDBY ON FORMATION GRID';
+      document.getElementById('gantryStatusMsg').innerText = 'STANDBY ON FORMATION GRID (20 CARS QUEUED)';
       document.getElementById('btnCommenceStart').classList.remove('hidden');
       document.getElementById('lightsOutBadge').classList.add('hidden');
       document.getElementById('currentLapDisplay').innerText = '0';
@@ -728,15 +716,13 @@
       document.getElementById('liveDot').className = 'w-1.5 h-1.5 rounded-full bg-amber-400';
       document.getElementById('liveText').innerText = 'GRID FORMING';
 
-      // Setup Weather
       generateWeatherForecast();
       buildWeatherTimelineUI();
 
-      // Clear Radios
       const logList = document.getElementById('radioLogList');
       logList.innerHTML = '';
-      addRadioMessage('RACE CONTROL', 'Cars positioned on Silverstone starting grid. All telemetry active.', 'emerald');
-      addRadioMessage('TEAM (WALL)', 'Alex (#16) on P2 Mediums, Carlos (#55) on P3 Hards. Warm tyres in the burnout box.', 'cyan');
+      addRadioMessage('RACE CONTROL', 'Silverstone Starting Grid: All 20 Formula 1 cars positioned.', 'emerald');
+      addRadioMessage('TEAM (WALL)', 'Yuki (#22) on Mediums, Daniel (#3) on Hards. Good tire warmup into Becketts.', 'cyan');
 
       updateTimingTower();
       updateCockpitUI();
@@ -756,13 +742,12 @@
       sim.state = 'SEQUENCE';
 
       document.getElementById('btnCommenceStart').classList.add('hidden');
-      document.getElementById('gantryStatusMsg').innerText = 'START SEQUENCE COMMENCED - ALL CARS STATIONARY';
-      addRadioMessage('RACE CONTROL', 'START PROCEDURE: 5 RED LIGHTS SEQUENCE COMMENCED.', 'rose');
+      document.getElementById('gantryStatusMsg').innerText = 'START PROCEDURE: 5 RED LIGHTS INITIALIZING';
+      addRadioMessage('RACE CONTROL', 'START SEQUENCE INITIATED: 20 ENGINES REVVED.', 'rose');
 
       let step = 1;
       sim.sequenceStep = step;
 
-      // Sequentially turn on 1 to 5 lights every 1.0 second
       sim.sequenceTimer = setInterval(() => {
         if (step <= 5) {
           const lightEl = document.getElementById(`light${step}`);
@@ -770,10 +755,8 @@
           sound.playRedLightBeep();
           step++;
         } else {
-          // All 5 red lights are illuminated! Hold for random 0.8s to 2.4s anticipation
           clearInterval(sim.sequenceTimer);
           document.getElementById('gantryStatusMsg').innerText = 'ALL 5 LIGHTS ILLUMINATED... HOLDING FOR GO!';
-          
           const randomHoldMs = 800 + Math.random() * 1600;
           setTimeout(() => {
             lightsOutGo();
@@ -791,7 +774,6 @@
       document.getElementById('gantryStatusMsg').innerText = 'LIGHTS OUT AND AWAY WE GO!';
       document.getElementById('lightsOutBadge').classList.remove('hidden');
 
-      // Update flag banner
       const banner = document.getElementById('flagBanner');
       banner.className = 'px-3 py-1 rounded bg-emerald-950 border border-emerald-500 text-emerald-300 font-racing font-bold text-xs flex items-center gap-2';
       document.getElementById('flagText').innerText = 'TRACK CLEAR (GREEN FLAG)';
@@ -799,21 +781,17 @@
       document.getElementById('liveDot').className = 'w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse';
       document.getElementById('liveText').innerText = 'RACE LIVE';
 
-      // Launch audio effects
       sound.playLightsOutBeep();
-      setTimeout(() => sound.playEngineThrottleBurst(), 80);
+      setTimeout(() => sound.playEngineThrottleBurst(), 70);
 
-      addRadioMessage('COMMISSIONER', 'LIGHTS OUT! Massive launch from Vance into Turn 1 (Abbey)!', 'emerald');
+      addRadioMessage('COMMISSIONER', 'LIGHTS OUT! 20 cars charge into Turn 1 Abbey! Great launch from Tsunoda!', 'emerald');
 
-      // Release standstill with slight launch reaction dispersion
       sim.cars.forEach(car => {
         car.standstill = false;
         car.lap = 1;
-        // Minor reaction time delta
-        car.lapProgress += (Math.random() * 0.003 - 0.0015);
+        car.lapProgress += (Math.random() * 0.002 - 0.001);
       });
 
-      // Hide start gantry banner after 8 seconds of racing
       setTimeout(() => {
         const gantry = document.getElementById('gantryContainer');
         gantry.classList.add('transition-opacity', 'duration-700', 'opacity-30');
@@ -823,18 +801,18 @@
     function generateWeatherForecast() {
       sim.weatherForecast = [];
       const rainChance = Math.random();
-      const rainArrival = rainChance > 0.35 ? Math.floor(14 + Math.random() * 9) : 999;
+      const rainArrival = rainChance > 0.35 ? Math.floor(13 + Math.random() * 10) : 999;
       const intensity = Math.random() > 0.5 ? 'HEAVY_RAIN' : 'LIGHT_RAIN';
 
       for (let lap = 1; lap <= TOTAL_LAPS + 5; lap++) {
         if (lap < rainArrival - 2) {
           sim.weatherForecast.push({ lap, type: 'SUNNY', wet: 0 });
         } else if (lap < rainArrival) {
-          sim.weatherForecast.push({ lap, type: 'CLOUDY', wet: 6 });
+          sim.weatherForecast.push({ lap, type: 'CLOUDY', wet: 8 });
         } else if (lap < rainArrival + 7) {
-          sim.weatherForecast.push({ lap, type: intensity, wet: intensity === 'HEAVY_RAIN' ? 78 : 42 });
+          sim.weatherForecast.push({ lap, type: intensity, wet: intensity === 'HEAVY_RAIN' ? 76 : 40 });
         } else {
-          sim.weatherForecast.push({ lap, type: 'CLOUDY', wet: 18 });
+          sim.weatherForecast.push({ lap, type: 'CLOUDY', wet: 16 });
         }
       }
     }
@@ -856,30 +834,22 @@
       }
     }
 
-    /* ====================================================================
-     *  CORE SIMULATION LOOP & PHYSICS
-     * ==================================================================== */
     function tickSimulation(dt) {
       if (!sim.running || sim.state !== 'RACING') return;
 
       const effectiveDt = dt * sim.timeSpeed;
       sim.timeSinceStartSec += effectiveDt;
 
-      // 1. Weather and track condition transitions
       updateTrackConditions(effectiveDt);
-
-      // 2. Incident & Safety car generator
       handleIncidents(effectiveDt);
-
-      // 3. Update all competing cars & pit stop double-stack queuing
       updateDoubleStackMonitoring();
+
       sim.cars.forEach(car => {
         if (!car.dnf && !car.standstill) {
           updateCarPhysics(car, effectiveDt);
         }
       });
 
-      // 4. Update race lap counter
       const leader = [...sim.cars].sort((a, b) => (b.lap + b.lapProgress) - (a.lap + a.lapProgress))[0];
       if (leader && leader.lap > sim.currentLap) {
         sim.currentLap = Math.min(TOTAL_LAPS, leader.lap);
@@ -890,7 +860,6 @@
         }
       }
 
-      // 5. Update UI screens
       updateTimingTower();
       updateCockpitUI();
       renderTrackCanvas();
@@ -922,11 +891,10 @@
       document.getElementById('trackTempText').innerText = `${sim.trackTemp.toFixed(1)}°C`;
       document.getElementById('trackWetText').innerText = `${Math.round(sim.trackWetness)}%`;
 
-      // Crossover advisory alert
       const nextWet = sim.weatherForecast.slice(sim.currentLap, sim.currentLap + 4).find(w => w.wet > 20);
       const alertEl = document.getElementById('forecastAlert');
       if (nextWet) {
-        alertEl.innerText = `RAIN ARRIVAL IN ~${nextWet.lap - sim.currentLap} LAPS (PREPARE INTERS)`;
+        alertEl.innerText = `RAIN IN ~${nextWet.lap - sim.currentLap} LAPS (PREP INTERS)`;
         alertEl.className = 'text-cyan-400 font-bold animate-pulse';
       } else {
         alertEl.innerText = 'DRY SLICK WINDOW';
@@ -937,15 +905,15 @@
     function handleIncidents(dt) {
       if (sim.flagState === 'GREEN') {
         sim.flagTimer += dt;
-        if (sim.flagTimer > 35 && Math.random() < 0.00035 * (dt * 5)) {
+        if (sim.flagTimer > 35 && Math.random() < 0.00045 * (dt * 5)) {
           const r = Math.random();
           if (r < 0.5) {
             triggerFlag('VSC', 20);
-            addRadioMessage('RACE CONTROL', 'VIRTUAL SAFETY CAR (VSC): SLOW TO DELTA TIME.', 'purple');
+            addRadioMessage('RACE CONTROL', 'VIRTUAL SAFETY CAR (VSC): DELTA LIMITS ENFORCED.', 'purple');
             sound.playWarningTone();
           } else {
             triggerFlag('SC', 35);
-            addRadioMessage('RACE CONTROL', 'FULL SAFETY CAR DEPLOYED. PIT WINDOW FAVORABLE.', 'amber');
+            addRadioMessage('RACE CONTROL', 'FULL SAFETY CAR DEPLOYED. PIT LANE OPEN.', 'amber');
             sound.playWarningTone();
           }
           sim.flagTimer = 0;
@@ -977,9 +945,6 @@
       }
     }
 
-    /* ====================================================================
-     *  DOUBLE-STACK PIT QUEUING LOGIC
-     * ==================================================================== */
     function updateDoubleStackMonitoring() {
       const car1 = sim.cars.find(c => c.carSlot === 'CAR1');
       const car2 = sim.cars.find(c => c.carSlot === 'CAR2');
@@ -993,7 +958,7 @@
 
       if (bothBoxing && distBetween < 4.5) {
         warningBanner.classList.remove('hidden');
-        statusText.innerText = 'PIT BOX: DOUBLE STACK IMMINENT!';
+        statusText.innerText = 'PIT BOX: DOUBLE STACK QUEUING IMMINENT!';
         statusText.className = 'text-rose-400 font-bold';
       } else {
         warningBanner.classList.add('hidden');
@@ -1005,15 +970,12 @@
     function updateCarPhysics(car, dt) {
       const tireProps = COMPOUNDS[car.compound];
 
-      // AI Decision Logic
       if (!car.isPlayer) {
         runAIStrategy(car);
       }
 
-      // Fuel Weight Delta
       const fuelWeightPenalty = (car.fuelKg * 0.030);
 
-      // Tire wear grip loss & cliff
       let wearPenalty = 0;
       if (car.tireAgeLaps > tireProps.cliffLap) {
         const excess = car.tireAgeLaps - tireProps.cliffLap;
@@ -1022,7 +984,6 @@
         wearPenalty = (100 - car.tireWear) * 0.022;
       }
 
-      // Wetness vs Tire Compound suitability penalty
       let weatherPenalty = 0;
       const [optWetMin, optWetMax] = tireProps.wetSuitability;
       if (sim.trackWetness < optWetMin) {
@@ -1032,7 +993,6 @@
         weatherPenalty = diff * 0.23;
       }
 
-      // Mode pace modifiers
       let modePaceBonus = 0;
       let thermalPush = 1.0;
       let fuelBurn = 1.74;
@@ -1055,7 +1015,6 @@
         fuelBurn *= 1.35;
       }
 
-      // ERS Overtake Deployment
       if (car.ersDeploy && car.ersBattery > 5) {
         modePaceBonus -= 0.75;
         car.ersBattery = Math.max(0, car.ersBattery - (dt * 4.8));
@@ -1064,7 +1023,6 @@
         if (car.ersBattery <= 5) car.ersDeploy = false;
       }
 
-      // Safety Car speed cap
       let speedCapMultiplier = 1.0;
       if (sim.flagState === 'VSC') speedCapMultiplier = 0.68;
       else if (sim.flagState === 'SC') speedCapMultiplier = 0.52;
@@ -1081,24 +1039,19 @@
 
       let speedMps = (TRACK_LENGTH_METERS / Math.max(70, targetPace)) * speedCapMultiplier;
 
-      // ================= PIT LANE & DOUBLE-STACK EXECUTION =================
+      // Pit lane execution
       if (car.inPitLane) {
-        speedMps = 22.2; // 80 km/h speed limiter
-        
-        // Check if pit box is occupied by team car
+        speedMps = 22.2;
         if (car.isPlayer && sim.pitLaneBusyByCarId && sim.pitLaneBusyByCarId !== car.id) {
-          // Double-stack queue waiting! Car cannot be serviced until leading car finishes!
           car.isQueuingDoubleStack = true;
-          car.pitStopDuration += (dt * 0.2); // Slower progress while held in queue
+          car.pitStopDuration += (dt * 0.2);
         } else {
-          // Free to be serviced
           car.isQueuingDoubleStack = false;
-          sim.pitLaneBusyByCarId = car.id; // Take ownership of team pit box
+          sim.pitLaneBusyByCarId = car.id;
           car.pitStopDuration += dt;
         }
 
         if (car.pitStopDuration >= STANDARD_PIT_STATIONARY) {
-          // Pit stop complete!
           car.inPitLane = false;
           car.pitStopDuration = 0;
           car.pitCount++;
@@ -1108,35 +1061,30 @@
           car.boxThisLap = false;
 
           if (sim.pitLaneBusyByCarId === car.id) {
-            sim.pitLaneBusyByCarId = null; // Release pit box for second car
+            sim.pitLaneBusyByCarId = null;
           }
 
           if (car.isPlayer) {
-            addRadioMessage('TEAM (WALL)', `Car #${car.id} pit stop complete (2.5s) on ${car.compound} tyres! Good release!`, 'emerald');
+            addRadioMessage('TEAM (WALL)', `Car #${car.id} (${car.name}) pit stop complete (2.6s) on ${car.compound} tyres! Clean exit!`, 'emerald');
             sound.playPitLimiterTone();
           }
         }
       }
 
-      // Update distance fraction
       const lapFractionGain = (speedMps * dt) / TRACK_LENGTH_METERS;
       car.lapProgress += lapFractionGain;
 
-      // Tyre Wear Rate
       const wearDelta = (tireProps.degRate / 100) * (speedMps / (TRACK_LENGTH_METERS / BASE_LAP_TIME)) * dt * thermalPush;
       car.tireWear = Math.max(5, car.tireWear - wearDelta);
 
-      // Four-wheel tyre thermals
       const targetHeat = sim.trackTemp + (car.paceMode === 'QUALI' ? 68 : 55) * thermalPush;
       ['FL', 'FR', 'RL', 'RR'].forEach(corner => {
         car.tireTemps[corner] += (targetHeat - car.tireTemps[corner]) * (dt * 0.12);
       });
 
-      // Fuel burn
       const burned = (fuelBurn / BASE_LAP_TIME) * dt;
       car.fuelKg = Math.max(0.5, car.fuelKg - burned);
 
-      // Lap Completion Check
       if (car.lapProgress >= 1.0) {
         car.lapProgress -= 1.0;
         car.lap++;
@@ -1148,12 +1096,11 @@
           car.bestLapTime = completedTime;
         }
 
-        // Enter Pit Lane
         if (car.boxThisLap && !car.inPitLane) {
           car.inPitLane = true;
           car.pitStopDuration = 0;
           if (car.isPlayer) {
-            addRadioMessage('DRIVER', `Car #${car.id} entering pit lane now.`, 'cyan');
+            addRadioMessage('DRIVER', `${car.name} (#${car.id}) entering pit lane now.`, 'cyan');
             sound.playPitLimiterTone();
           }
         }
@@ -1165,12 +1112,12 @@
       const isWrongWetTyre = (sim.trackWetness > 30 && (car.compound === 'SOFT' || car.compound === 'MEDIUM' || car.compound === 'HARD')) ||
                              (sim.trackWetness < 15 && car.compound === 'WET');
       const isWornOut = car.tireWear < 28 || car.tireAgeLaps > props.cliffLap + 2;
-      const scDiscount = (sim.flagState === 'SC' || sim.flagState === 'VSC') && car.tireAgeLaps > 11;
+      const scDiscount = (sim.flagState === 'SC' || sim.flagState === 'VSC') && car.tireAgeLaps > 10;
 
       if (!car.inPitLane && !car.boxThisLap && (isWrongWetTyre || isWornOut || scDiscount)) {
         car.boxThisLap = true;
         car.plannedCompound = chooseAIBestTyre();
-        addRadioMessage('RACE CONTROL', `${car.name} (${car.team}) pitting from Lap ${car.lap}`, 'slate');
+        addRadioMessage('RACE CONTROL', `${car.name} (${car.team}) calls box on Lap ${car.lap}`, 'slate');
       }
     }
 
@@ -1184,7 +1131,7 @@
     }
 
     /* ====================================================================
-     *  LIVE TIMING TOWER & DUAL COCKPIT HUD
+     *  20-DRIVER TIMING TOWER
      * ==================================================================== */
     function updateTimingTower() {
       const tbody = document.getElementById('timingTableBody');
@@ -1208,7 +1155,6 @@
         const tireInfo = COMPOUNDS[car.compound];
         const pitStatus = car.inPitLane ? '<span class="text-amber-400 font-bold">PIT</span>' : car.pitCount;
 
-        // Custom highlight for Car 1 (#16) and Car 2 (#55)
         let rowStyle = 'hover:bg-slate-800/40 text-slate-300';
         if (car.carSlot === 'CAR1') rowStyle = 'bg-cyan-950/40 text-cyan-300 font-bold border-l-2 border-cyan-400';
         if (car.carSlot === 'CAR2') rowStyle = 'bg-amber-950/40 text-amber-300 font-bold border-l-2 border-amber-400';
@@ -1217,7 +1163,7 @@
           <tr class="${rowStyle} transition-colors">
             <td class="py-1 px-1 text-center font-racing ${pos <= 3 ? 'text-amber-400 font-bold' : 'text-slate-400'}">${pos}</td>
             <td class="py-1 px-1 flex items-center gap-1.5 truncate">
-              <span class="w-1.5 h-3 rounded-sm" style="background-color: ${car.color}"></span>
+              <span class="w-1.5 h-3 rounded-sm flex-shrink-0" style="background-color: ${car.color}"></span>
               <span class="truncate font-sans font-semibold">${car.name}</span>
             </td>
             <td class="py-1 px-1 text-right text-slate-300">${gapText}</td>
@@ -1246,12 +1192,10 @@
     }
 
     function updateSingleCarDeck(car, prefix, statusBadgeId) {
-      // Tyre
       document.getElementById(`${prefix}TireWearText`).innerText = `${Math.round(car.tireWear)}%`;
       document.getElementById(`${prefix}CompoundDisplay`).innerText = `${COMPOUNDS[car.compound].name} (${car.tireAgeLaps} Laps)`;
       document.getElementById(`${prefix}CompoundDisplay`).style.color = COMPOUNDS[car.compound].color;
 
-      // Fuel
       document.getElementById(`${prefix}FuelText`).innerText = `${car.fuelKg.toFixed(1)} kg`;
       const remLaps = car.fuelKg / 1.74;
       const needLaps = Math.max(1, TOTAL_LAPS - sim.currentLap);
@@ -1260,17 +1204,14 @@
       fuelDeltaEl.innerText = `${deltaLaps >= 0 ? '+' : ''}${deltaLaps.toFixed(1)} Laps`;
       fuelDeltaEl.className = deltaLaps >= 0 ? 'text-[9px] text-emerald-400 block font-bold mt-0.5' : 'text-[9px] text-red-400 block font-bold mt-0.5 animate-pulse';
 
-      // ERS
       document.getElementById(`${prefix}ErsText`).innerText = `${Math.round(car.ersBattery)}%`;
       document.getElementById(`${prefix}ErsBar`).style.width = `${car.ersBattery}%`;
 
-      // Corner temps
       document.getElementById(`${prefix}FL`).innerText = `${Math.round(car.tireTemps.FL)}°`;
       document.getElementById(`${prefix}FR`).innerText = `${Math.round(car.tireTemps.FR)}°`;
       document.getElementById(`${prefix}RL`).innerText = `${Math.round(car.tireTemps.RL)}°`;
       document.getElementById(`${prefix}RR`).innerText = `${Math.round(car.tireTemps.RR)}°`;
 
-      // Status Badge
       const badge = document.getElementById(statusBadgeId);
       if (car.standstill) {
         badge.innerText = 'GRID STANDBY';
@@ -1298,7 +1239,7 @@
     }
 
     /* ====================================================================
-     *  2D CIRCUIT TRACK RENDERING (SILVERSTONE)
+     *  2D CIRCUIT TRACK RENDERING
      * ==================================================================== */
     const circuitPoints = [
       { x: 0.18, y: 0.72 }, { x: 0.28, y: 0.72 }, { x: 0.35, y: 0.65 },
@@ -1334,7 +1275,6 @@
       const h = canvas.height;
       ctx.clearRect(0, 0, w, h);
 
-      // Ribbon
       ctx.beginPath();
       circuitPoints.forEach((pt, i) => {
         if (i === 0) ctx.moveTo(pt.x * w, pt.y * h);
@@ -1352,12 +1292,11 @@
       ctx.lineWidth = 6;
       ctx.stroke();
 
-      // Start/Finish Line
       const st = circuitPoints[0];
       ctx.fillStyle = '#ffffff';
       ctx.fillRect(st.x * w - 3, st.y * h - 7, 6, 14);
 
-      // Competing Cars (Blips)
+      // Render 20 cars on canvas
       sim.cars.forEach(car => {
         if (car.dnf) return;
         const pos = getTrackCoordinates(car.lapProgress);
@@ -1366,33 +1305,30 @@
 
         ctx.beginPath();
         if (car.carSlot === 'CAR1') {
-          // Vance #16: Cyan Blip with halo
-          ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+          // Tsunoda (#22) - Cyan Halo
+          ctx.arc(cx, cy, 6.5, 0, Math.PI * 2);
           ctx.fillStyle = '#00f0ff';
           ctx.fill();
           ctx.strokeStyle = '#ffffff';
-          ctx.lineWidth = 1.5;
+          ctx.lineWidth = 1.8;
           ctx.stroke();
         } else if (car.carSlot === 'CAR2') {
-          // Sainz #55: Amber Blip with halo
-          ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+          // Ricciardo (#3) - Amber Halo
+          ctx.arc(cx, cy, 6.5, 0, Math.PI * 2);
           ctx.fillStyle = '#ffaa00';
           ctx.fill();
           ctx.strokeStyle = '#ffffff';
-          ctx.lineWidth = 1.5;
+          ctx.lineWidth = 1.8;
           ctx.stroke();
         } else {
-          // AI Rivals
-          ctx.arc(cx, cy, 3.8, 0, Math.PI * 2);
+          // 18 AI cars
+          ctx.arc(cx, cy, 3.5, 0, Math.PI * 2);
           ctx.fillStyle = car.color || '#94a3b8';
           ctx.fill();
         }
       });
     }
 
-    /* ====================================================================
-     *  RADIO FEED & LOGGING
-     * ==================================================================== */
     function addRadioMessage(sender, text, colorTone = 'slate') {
       const list = document.getElementById('radioLogList');
       if (!list) return;
@@ -1415,9 +1351,6 @@
       }
     }
 
-    /* ====================================================================
-     *  FINISH & CHEQUERED MODAL
-     * ==================================================================== */
     function triggerChequeredFlag() {
       sim.state = 'FINISHED';
       document.getElementById('raceSummaryModal').classList.remove('hidden');
@@ -1434,30 +1367,29 @@
       document.getElementById('sumC1Pits').innerText = `${car1.pitCount} Stops`;
       document.getElementById('sumC2Pits').innerText = `${car2.pitCount} Stops`;
 
-      let summary = `Apex Racing concludes the Grand Prix with Vance scoring P${c1Pos} and Sainz scoring P${c2Pos}. `;
+      let summary = `Grand Prix finished across 20 competitors! Tsunoda crossed the line at P${c1Pos} and Ricciardo at P${c2Pos}. `;
       if (c1Pos <= 3 && c2Pos <= 3) {
-        summary += `Double podium achieved! Pit-stop coordination and weather calls were flawless!`;
-      } else if (c1Pos <= 3 || c2Pos <= 3) {
-        summary += `Solid podium performance! Strong points finish for the constructor championship battle.`;
+        summary += `A legendary double podium for both drivers! Strategy and double-stack pit timings were executed to perfection!`;
+      } else if (c1Pos <= 10 || c2Pos <= 10) {
+        summary += `Valuable championship points secured inside the top 10 against top contenders.`;
       } else {
-        summary += `A hard-fought race in varying grip conditions. Strategy telemetry data will refine the next Grand Prix setup.`;
+        summary += `A challenging race through traffic and shifting track moisture. Valuable telemetry data collected for the debrief.`;
       }
       document.getElementById('summaryAnalysisText').innerText = summary;
     }
 
     /* ====================================================================
-     *  EVENT LISTENERS & DUAL-CAR STRATEGY BINDINGS
+     *  EVENT HANDLERS & INITIALIZATION
      * ==================================================================== */
-    // Start Sequence Button
     document.getElementById('btnCommenceStart').addEventListener('click', () => {
       startFiveRedLightsProcedure();
     });
 
-    // Time speed buttons
     document.getElementById('btnPause').addEventListener('click', () => {
       sim.running = !sim.running;
       document.getElementById('btnPause').innerText = sim.running ? '⏸' : '▶';
     });
+
     const speeds = [
       { id: 'btnSpeed1', val: 1 }, { id: 'btnSpeed2', val: 2 },
       { id: 'btnSpeed5', val: 5 }, { id: 'btnSpeed10', val: 10 }
@@ -1478,9 +1410,7 @@
       document.getElementById('btnAudioMute').innerText = sound.muted ? '🔇' : '🔊';
     });
 
-    // Setup Car 1 (#16) Buttons
     setupCarStrategyControls('CAR1', 'c1', 'cyan');
-    // Setup Car 2 (#55) Buttons
     setupCarStrategyControls('CAR2', 'c2', 'amber');
 
     function setupCarStrategyControls(carSlot, prefix, themeColor) {
@@ -1503,11 +1433,10 @@
             }
           });
           sound.playRadioBeep();
-          addRadioMessage('TEAM (WALL)', `Car #${car.id} pace mode set to: ${car.paceMode}`, themeColor);
+          addRadioMessage('TEAM (WALL)', `${car.name} (#${car.id}) pace mode set to: ${car.paceMode}`, themeColor);
         });
       });
 
-      // ERS Overtake
       const ersBtn = document.getElementById(`${prefix}_btnOvertake`);
       ersBtn.addEventListener('click', () => {
         const car = sim.cars.find(c => c.carSlot === carSlot);
@@ -1516,7 +1445,7 @@
         if (car.ersDeploy) {
           ersBtn.className = 'flex-1 py-1 text-[10px] font-racing font-bold rounded bg-red-600 text-white border border-red-400 animate-pulse flex items-center justify-center gap-1';
           ersBtn.innerText = '⚡ ERS OVERTAKE [ACTIVE]';
-          addRadioMessage('DRIVER', `Car #${car.id} activating ERS attack deployment!`, 'rose');
+          addRadioMessage('DRIVER', `${car.name} activating full ERS overtake boost!`, 'rose');
         } else {
           ersBtn.className = 'flex-1 py-1 text-[10px] font-racing font-bold rounded bg-slate-800 hover:bg-red-600/80 text-red-400 border border-red-500/40 transition flex items-center justify-center gap-1';
           ersBtn.innerText = '⚡ ERS OVERTAKE [OFF]';
@@ -1524,7 +1453,6 @@
         sound.playRadioBeep();
       });
 
-      // Planned Compound buttons
       document.querySelectorAll(`.${prefix}-tyre-choice`).forEach(btn => {
         btn.addEventListener('click', () => {
           const compound = btn.getAttribute('data-compound');
@@ -1537,29 +1465,24 @@
           });
           btn.classList.add('ring-2', themeColor === 'cyan' ? 'ring-cyan-400' : 'ring-amber-400', themeColor === 'cyan' ? 'bg-cyan-950/70' : 'bg-amber-950/70');
           sound.playRadioBeep();
-          addRadioMessage('STRATEGY', `Car #${car.id} next tyre selected: ${COMPOUNDS[compound].name}`, themeColor);
+          addRadioMessage('STRATEGY', `${car.name} (#${car.id}) target tyre set: ${COMPOUNDS[compound].name}`, themeColor);
         });
       });
 
-      // Box Button
       document.getElementById(`${prefix}_btnBox`).addEventListener('click', () => {
         const car = sim.cars.find(c => c.carSlot === carSlot);
         if (!car) return;
         car.boxThisLap = true;
         sound.playWarningTone();
-        addRadioMessage('TEAM (WALL)', `BOX BOX BOX! Car #${car.id} box this lap for ${COMPOUNDS[car.plannedCompound].name}!`, themeColor);
+        addRadioMessage('TEAM (WALL)', `BOX BOX BOX! ${car.name} (#${car.id}) box this lap for ${COMPOUNDS[car.plannedCompound].name}!`, themeColor);
       });
     }
 
-    // Modal restart
     document.getElementById('btnRestartRace').addEventListener('click', () => {
       document.getElementById('raceSummaryModal').classList.add('hidden');
       initRace();
     });
 
-    /* ====================================================================
-     *  RAF ANIMATION LOOP
-     * ==================================================================== */
     let lastTime = performance.now();
     function loop(now) {
       const dt = Math.min(0.2, (now - lastTime) / 1000);
